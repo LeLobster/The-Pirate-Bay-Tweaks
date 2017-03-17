@@ -1,0 +1,38 @@
+p {
+    font-family: helvetica;
+    text-align: center;}
+#expla {
+    font-family: helvetica;
+    font-style: italic;
+    font-size: 75%;}
+#hidden-settings, #hidden-settings2 {
+    color: gray;
+    font-size: 75%;}
+#options_form label input {
+    position: absolute;
+    left: 50%;
+    max-width: 50%;
+    color: var(--in-content-page-color);}
+#options_form label input[type="text"] {
+    font-size: 105%;
+    width: 48%;}
+#options_form label input[type="text"]:focus {
+    outline: 1px solid lightblue;}
+#options_form label input[type="checkbox"] {
+    width: -moz-fit-content;
+    width: auto;}
+#options_form label input[type="color"] {
+    width: 10%;
+    padding: 0px;}  
+#options_form label input[type="number"] {
+    max-width: 12%;}        
+.input_label {
+    display: block;
+    width: 50%; 
+    width: -moz-fit-content;
+    padding: 5px 0px 5px 0px;
+    font-family: helvetica;}
+.faded_hr {
+    opacity: .15;}
+#restore_default {
+    float: right;}
