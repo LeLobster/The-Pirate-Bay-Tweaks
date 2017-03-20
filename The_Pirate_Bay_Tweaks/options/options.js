@@ -1,6 +1,6 @@
 var defaultSettings = {
     highlightGoodTor: true,
-    GoodHighlightColor: "#4bc54b",
+    GoodHighlightColor: "#60cc60",
     GoodKeyword: [],
     GoodUploader: [],
     includeOther: true,
@@ -37,29 +37,21 @@ var defaultSettings = {
 }
 
 function saveOptions(e) {
-    
-    function onError(error) {
-        console.log(`Error: ${error}`);
-    }
-    
     all_forms = document.querySelectorAll('#options_form label *');
     for (i = 0; i < all_forms.length; i++) {
         if (all_forms[i].type === 'checkbox') {
             id = all_forms[i].id;
             state = document.querySelector('#' + id).checked;
             setting = chrome.storage.local.set({ [all_forms[i].id]: state });
-        }
-        else if (all_forms[i].type === 'color') {
+        } else if (all_forms[i].type === 'color') {
             id = all_forms[i].id;
             state = document.querySelector('#' + id).value;     
             setting = chrome.storage.local.set({ [all_forms[i].id]: state });       
-        }
-        else if (all_forms[i].type === 'text') {
+        } else if (all_forms[i].type === 'text') {
             id = all_forms[i].id;
             state = document.querySelector('#' + id).value.split(',');          
             setting = chrome.storage.local.set({ [all_forms[i].id]: state }); 
-        }
-        else if (all_forms[i].type === 'number') {
+        } else if (all_forms[i].type === 'number') {
             id = all_forms[i].id;
             state = parseInt(document.querySelector('#' + id).value);
             setting = chrome.storage.local.set({ [all_forms[i].id]: state });       
@@ -74,17 +66,15 @@ function restoreDefaults() {
         element = document.querySelector('#' + key);
         if (element.type === 'checkbox') {
             element.checked = defaultSettings[element.id]
-        } else
+        } else {
             element.value = defaultSettings[element.id]
+		}
     }
     console.log('TPB Tweaks Web-Ext: Default settings restored!');
     alert('Default settings restored!');
 }
 
-function getOptions(callback) {
-    function onError(error) {
-        console.log(`Error: ${error}`);
-    }
+function getOptions() {
     chrome.storage.local.get(null, function(results) {
         for (key in results) {
             element = document.querySelector('#' + key);
@@ -110,8 +100,7 @@ function hideOrNotToHide() {
         hideThis.style = 'display: unset;'
         hiddenPelt.style = 'display: none;'
         console.log('TPB Tweaks Web-Ext: includeOther section is not hidden.');
-    }
-    else {
+    } else {
         hideThis.style = 'display: none;'
         hiddenPelt.style = 'display: block;'
         console.log('TPB Tweaks Web-Ext: includeOther section is hidden.');
@@ -120,8 +109,7 @@ function hideOrNotToHide() {
         hideThis2.style = 'display: unset;'
         hiddenPelt2.style = 'display: none;'
         console.log('TPB Tweaks Web-Ext: includeUnwanted section is not hidden.');
-    }
-    else {
+    } else {
         hideThis2.style = 'display: none;'
         hiddenPelt2.style = 'display: block;'
         console.log('TPB Tweaks Web-Ext: includeUnwanted section is hidden.');
