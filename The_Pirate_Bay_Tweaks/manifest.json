@@ -2,15 +2,15 @@
 
   "manifest_version": 2,
   "name": "The Pirate Bay Tweaks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   
   "short_name": "TPB Tweaks",
+  "description": "Allows you to hide or highlight torrents or users based on keywords.", 
   "author": "LeLobster",
   "developer": {
     "name": "LeLobster",
-    "url": "https://addons.mozilla.org/firefox/user/LeLobster/"
+    "url": "https://addons.mozilla.org/firefox/addon/the-pirate-bay-tweaks/"
   },
-  "description": "Allows you to hide or highlight torrents or users based on keywords.",
   "homepage_url": "https://addons.mozilla.org/firefox/addon/the-pirate-bay-tweaks/", 
  
   "icons": {"32": "icons/main_icon_32.png",
@@ -33,8 +33,7 @@
                   "https://thepiratebay.org/tv/*",
                   "https://thepiratebay.org/music/genre/*"],
       
-      "js": ["src/jquery/jquery.min.js",
-             "src/scripts/main.js"]
+      "js": ["src/scripts/main.js"]
     }
   ],
   
