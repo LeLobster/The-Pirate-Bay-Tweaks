@@ -11,7 +11,7 @@ var defaultSettings = {
     affectOther: true,
     otherColor: "#aad1f3",
     hideOtherInsteadOfHighlight: false,
-    OtherKeyword: ["hdrip", "webrip", "web-dl", "WEB"],
+    OtherKeyword: ["hdrip", "webrip", "web-dl", "WEB", "hdtv"],
     affectNonRetail: true,
     NonRetailColor: "#841d1d",
     hideNonRetailInsteadOfHighlight: true,
@@ -27,7 +27,7 @@ var defaultSettings = {
     hideUnwantedUploaderInsteadOfHighlight: true,
     UnwantedUploader: [],
     hideNonMovies: false,
-    nonMovies: ["music videos", "movie clips", "3D"],
+    nonMovies: ["music videos", "movie clips", "3D", "porn"],
     affectPotentialFakes: true,
     trustedTorrentsOnly: false,
     maxSeedsWithoutTrust: 999,
@@ -58,7 +58,6 @@ function saveOptions(e) {
         }
     }
   e.preventDefault();
-  console.log('TPB Tweaks Web-Ext: Settings saved!');
 }
 
 function restoreDefaults() {
@@ -70,7 +69,6 @@ function restoreDefaults() {
             element.value = defaultSettings[element.id]
 		}
     }
-    console.log('TPB Tweaks Web-Ext: Default settings restored!');
     alert('Default settings restored!');
 }
 
@@ -84,7 +82,6 @@ function getOptions() {
               element.value = results[element.id]
             }
         }
-        console.log('TPB Tweaks Web-Ext: Settings loaded!');
         hideOrNotToHide();
     });
 }
@@ -99,20 +96,16 @@ function hideOrNotToHide() {
     if (includeOtherCheck.checked === true) {
         hideThis.style = 'display: unset;'
         hiddenPelt.style = 'display: none;'
-        console.log('TPB Tweaks Web-Ext: includeOther section is not hidden.');
     } else {
         hideThis.style = 'display: none;'
         hiddenPelt.style = 'display: block;'
-        console.log('TPB Tweaks Web-Ext: includeOther section is hidden.');
     }
     if (includeUnwantedCheck.checked === true) {
         hideThis2.style = 'display: unset;'
         hiddenPelt2.style = 'display: none;'
-        console.log('TPB Tweaks Web-Ext: includeUnwanted section is not hidden.');
     } else {
         hideThis2.style = 'display: none;'
         hiddenPelt2.style = 'display: block;'
-        console.log('TPB Tweaks Web-Ext: includeUnwanted section is hidden.');
     }
 }
 
