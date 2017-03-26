@@ -15,8 +15,9 @@ var defaultSettings = {
     affectNonRetail: true,
     NonRetailColor: "#841d1d",
     hideNonRetailInsteadOfHighlight: true,
-    NonRetailKeyword: ["cam", "hdcam", "camrip", "telesync", "ts", "hdts", "hd-ts", "hardcoded", "hc",
-                       "hdtc", "dvdscr", "screener", "dvdscreener", "TRUEFRENCH", "dublado", "upscale"],
+    NonRetailKeyword: ["cam", "hdcam", "camrip", "telesync", "ts", "hdts", "hd-ts",
+	                   "hardcoded", "hc", "hdtc", "dvdscr", "screener", "dvdscreener",
+					   "TRUEFRENCH", "dublado", "upscale", "korsub"],
     includeUnwanted: true,
     affectUnwantedKeyword: true,
     UnwantedHighlightColor: "#d73838",
@@ -33,6 +34,8 @@ var defaultSettings = {
     maxSeedsWithoutTrust: 999,
     dontHideJustHighlightPotentialFakes: true,
     includeUntrustedTorrentsWithoutComments: false,
+	markNewTorrents: false,
+	stretchWidth: true,
     detDescColor: "#1f2223"
 }
 

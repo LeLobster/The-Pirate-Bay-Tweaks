@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "The Pirate Bay Tweaks",
-  "version": "1.0.2",
+  "version": "1.0.3",
   
   "short_name": "TPB Tweaks",
   "description": "Allows you to hide or highlight torrents or users based on keywords.", 
@@ -19,7 +19,8 @@
             "192": "icons/main_icon_192.png"},
             
   "web_accessible_resources": [
-      "src/warning.png"
+      "src/warning.png",
+	  "src/new.png"
   ],
 
   "content_scripts": [
