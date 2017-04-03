@@ -2,10 +2,10 @@
 
   "manifest_version": 2,
   "name": "The Pirate Bay Tweaks",
-  "version": "1.0.3",
+  "version": "1.0.4",
   
   "short_name": "TPB Tweaks",
-  "description": "Allows you to hide or highlight torrents or users based on keywords.", 
+  "description": "Enhances The Pirate Bay with configurable tweaks.", 
   "author": "LeLobster",
   "developer": {
     "name": "LeLobster",
@@ -20,7 +20,10 @@
             
   "web_accessible_resources": [
       "src/warning.png",
-	  "src/new.png"
+	  "src/new.png",
+	  "src/subscene.png",
+	  "src/youtube.png",
+	  "src/imdb.png"
   ],
 
   "content_scripts": [

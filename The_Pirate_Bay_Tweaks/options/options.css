@@ -5,14 +5,15 @@ p {
     font-family: helvetica;
     font-style: italic;
     font-size: 75%;}
-#hidden-settings, #hidden-settings2 {
+#hidden-settings, #hidden-settings2,
+#hidden-settings3, #hidden-settings4 {
     color: gray;
-    font-size: 75%;}
+    font-size: 75%;
+	cursor: default;}
 #options_form label input {
     position: absolute;
     left: 50%;
-    max-width: 50%;
-    color: var(--in-content-page-color);}
+    max-width: 50%;}
 #options_form label input[type="text"] {
     font-size: 105%;
     width: 48%;}
@@ -29,10 +30,20 @@ p {
 .input_label {
     display: block;
     width: 50%; 
-    width: -moz-fit-content;
+    /* width: -moz-fit-content; */
     padding: 5px 0px 5px 0px;
     font-family: helvetica;}
 .faded_hr {
     opacity: .15;}
+#Subscene, #Youtube, #IMDb {    
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    padding-left: 24px;}
+#Subscene {
+    background-image: url('../src/subscene.png');}
+#Youtube {
+    background-image: url('../src/youtube.png');}
+#IMDb {
+    background-image: url('../src/imdb.png');}
 #restore_default {
     float: right;}

@@ -19,9 +19,8 @@
         <hr></hr>
         <p>x265/OTHER/NON RETAIL TORRENTS</p>
         <label class="input_label" title="The options of this section are disabled and hidden when the checkbox is unchecked, check it to show and activate them" >Activate this entire section<input type="checkbox" id="includeOther" > </label>
-            <p id="hidden-settings" style="display: none;" >SETTINGS INACTIVE AND HIDDEN</p>
+            <p id="hidden-settings" style="display: none;" title="Check checkbox to show settings" >SETTINGS INACTIVE AND HIDDEN</p>
             <div id="hideOrNotToHide" style="display: unset;">
-                <label class="input_label" title="Don't apply highlights but hide everything listed in this section" >Hide everything instead of highlight<input type="checkbox" id="hideAllOtherInsteadOfHighlight" > </label>
                 <hr class="faded_hr"></hr>
                 <label class="input_label" title="Torrents which include 'x265, HEVC, H265 or H.265' will be affected" >Affect x265/hevc<input type="checkbox" id="affectx256" > </label>
                 <label class="input_label" title="The color to use for x265 torrents" >x265 highlight color<input type="color" id="x256Color" > </label>
@@ -40,7 +39,7 @@
         <hr></hr>
         <p>UNWANTED TORRENTS</p>
         <label class="input_label" title="Include torrents which are unwanted based on keywords or uploader name" >Activate this section<input type="checkbox" id="includeUnwanted" > </label>
-            <p id="hidden-settings2" style="display: none;" >SETTINGS INACTIVE AND HIDDEN</p>
+            <p id="hidden-settings2" style="display: none;" title="Check checkbox to show settings" >SETTINGS INACTIVE AND HIDDEN</p>
             <div id="hideOrNotToHide2" style="display: unset;">
                 <hr class="faded_hr"></hr>
                 <label class="input_label" title="Include torrents which contain unwanted keywords" >Affect keywords<input type="checkbox" id="affectUnwantedKeyword" > </label>
@@ -68,7 +67,16 @@
 		<label class="input_label" title="Display an icon on torrents which are uploaded today or yesterday" >Mark new torrents<input type="checkbox" id="markNewTorrents" > </label>
 		<label class="input_label" title="Widens the part which lists the torrents to almost max of your screen width" >Increase width<input type="checkbox" id="stretchWidth" > </label>
         <label class="input_label" title="Change the main text color so it doesn't clash with the color of highlights and becomes unreadable" >Text color<input type="color" id="detDescColor" > </label>
-        <hr></hr>
+		<hr class="faded_hr"></hr>
+		<label class="input_label" title="Display icons on every tv-show and movie torrent so that you can easily search for subtitles, youtube videos or its imdb page" >Display search icons<input type="checkbox" id="displaySearch" > </label>
+			<p id="hidden-settings3" style="display: none;" >ATTENTION: Icons will cause a little extra page load time, especially when browsing top 100s</p>
+		    <p id="hidden-settings4" style="display: block;" title="Check checkbox to show settings" >SETTINGS INACTIVE AND HIDDEN</p>        
+			<div id="hideOrNotToHide3" style="display: unset;">
+			    <label class="input_label" id="Subscene" >Subscene<input type="checkbox" id="showSubscene" > </label>   
+			    <label class="input_label" id="Youtube" >Youtube<input type="checkbox" id="showYoutube" > </label>			    
+			    <label class="input_label" id="IMDb" >IMDb<input type="checkbox" id="showIMDb" > </label>				
+			</div>
+		<hr></hr>
     </form>
     <button id="restore_default" >Restore defaults</button>
 
