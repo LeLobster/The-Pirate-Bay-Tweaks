@@ -1,6 +1,3 @@
-# WebExtensions
-WebExtensions for FireFox/Chrome
-
 # The Pirate Bay Tweaks
 An extension which enhances thepiratebay.org with several fully configurable tweaks. 
 
