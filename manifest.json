@@ -1,0 +1,47 @@
+{
+
+  "manifest_version": 2,
+  "name": "The Pirate Bay Tweaks",
+  "version": "1.0.4",
+  
+  "short_name": "TPB Tweaks",
+  "description": "Enhances The Pirate Bay with configurable tweaks.", 
+  "author": "LeLobster",
+  "developer": {
+    "name": "LeLobster",
+    "url": "https://addons.mozilla.org/firefox/addon/the-pirate-bay-tweaks/"
+  },
+  "homepage_url": "https://addons.mozilla.org/firefox/addon/the-pirate-bay-tweaks/", 
+ 
+  "icons": {"32": "icons/main_icon_32.png",
+            "48": "icons/main_icon_48.png",
+            "96": "icons/main_icon_96.png",
+            "192": "icons/main_icon_192.png"},
+            
+  "web_accessible_resources": [
+      "src/warning.png",
+	  "src/new.png",
+	  "src/subscene.png",
+	  "src/youtube.png",
+	  "src/imdb.png"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://thepiratebay.org/search/*",
+                  "https://thepiratebay.org/browse/*",
+                  "https://thepiratebay.org/user/*",
+                  "https://thepiratebay.org/recent",
+                  "https://thepiratebay.org/recent/*",
+                  "https://thepiratebay.org/top/*",
+                  "https://thepiratebay.org/tv/*",
+                  "https://thepiratebay.org/music/genre/*"],
+      
+      "js": ["src/scripts/main.js"]
+    }
+  ],
+  
+  "options_ui": {"page": "options/options.html"},
+  "permissions": ["storage"] 
+  
+}

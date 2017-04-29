@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="options.css" />
+    <script src="options.js" defer></script>
+  </head>
+
+  <body>
+    <form id="options_form">
+        <a id="expla">Hover over prefs to see a short description.</a>
+        <hr></hr>
+        <p>GOOD TORRENTS</p>
+        <label class="input_label" title="Apply a highlight to torrents which contain keywords or are uploaded by users listed below" >Apply a highlight to good torrents<input type="checkbox" id="highlightGoodTor" > </label>
+        <label class="input_label" title="The color to use for good torrents" >Good highlight color<input type="color" id="GoodHighlightColor" ></label>
+        <label class="input_label" title="Comma seperated, case-insensitive, list of good keywords which this extension will search for in the torrent title" >Good torrent keywords<input type="text" id="GoodKeyword" > </label>
+        <label class="input_label" title="Comma seperated, case-sensitive, list of good uploader names. Found next to 'ULed by '" >Good uploaders<input type="text" id="GoodUploader" > </label>
+        <hr></hr>
+        <p>x265/OTHER/NON RETAIL TORRENTS</p>
+        <label class="input_label" title="The options of this section are disabled and hidden when the checkbox is unchecked, check it to show and activate them" >Activate this entire section<input type="checkbox" id="includeOther" > </label>
+            <p id="hidden-settings" style="display: none;" title="Check checkbox to show settings" >SETTINGS INACTIVE AND HIDDEN</p>
+            <div id="hideOrNotToHide" style="display: unset;">
+                <hr class="faded_hr"></hr>
+                <label class="input_label" title="Torrents which include 'x265, HEVC, H265 or H.265' will be affected" >Affect x265/hevc<input type="checkbox" id="affectx256" > </label>
+                <label class="input_label" title="The color to use for x265 torrents" >x265 highlight color<input type="color" id="x256Color" > </label>
+                <label class="input_label" title="Hide x265 torrents instead of applying a highlight" >Hide x265 instead of highlight<input type="checkbox" id="hidex265InsteadOfHighlight" > </label>
+                <hr class="faded_hr" ></hr>
+                <label class="input_label" title="Include this section" >Affect other keywords<input type="checkbox" id="affectOther" > </label>
+                <label class="input_label" title="The color to use for torrents which include other keywords" >Other keyword highlight color<input type="color" id="otherColor" > </label>
+                <label class="input_label" title="Hide these torrents instead of applying a highlight" >Hide instead of highlight<input type="checkbox" id="hideOtherInsteadOfHighlight" > </label>
+                <label class="input_label" title="Comma seperated, case-insensitive, list of other keywords which this extension will search for in the torrent title" >Other keywords<input type="text" id="OtherKeyword" > </label>
+                <hr class="faded_hr"></hr>
+                <label class="input_label" title="Include torrents which contain non retail keywords" >Affect non retail<input type="checkbox" id="affectNonRetail" > </label>
+                <label class="input_label" title="The color to use for non retail keywords" >Non retail highlight color<input type="color" id="NonRetailColor" > </label>
+                <label class="input_label" title="Hide these torrents instead of applying a highlight" >Hide instead of highlight<input type="checkbox" id="hideNonRetailInsteadOfHighlight" > </label>
+                <label class="input_label" title="Comma seperated, case-insensitive, list of non retail keywords which this extension will search for in the torrent title" >Non retail keywords<input type="text" id="NonRetailKeyword" > </label>
+            </div>
+        <hr></hr>
+        <p>UNWANTED TORRENTS</p>
+        <label class="input_label" title="Include torrents which are unwanted based on keywords or uploader name" >Activate this section<input type="checkbox" id="includeUnwanted" > </label>
+            <p id="hidden-settings2" style="display: none;" title="Check checkbox to show settings" >SETTINGS INACTIVE AND HIDDEN</p>
+            <div id="hideOrNotToHide2" style="display: unset;">
+                <hr class="faded_hr"></hr>
+                <label class="input_label" title="Include torrents which contain unwanted keywords" >Affect keywords<input type="checkbox" id="affectUnwantedKeyword" > </label>
+                <label class="input_label" title="The color to use for unwated keywords" >Unwanted keyword highlight color<input type="color" id="UnwantedHighlightColor" > </label>
+                <label class="input_label" title="Hide these torrents instead of applying a highlight" >Hide instead of highlight<input type="checkbox" id="hideUnwantedKeywordInsteadOfHighlight" > </label>
+                <label class="input_label" title="Comma seperated, case-insensitive, list of unwanted keywords" >Unwanted keywords<input type="text" id="UnwantedKeyword" > </label>
+                <label class="input_label" title="Include torrents uploaded by unwanted uploaders" >Affect unwanted uploaders<input type="checkbox" id="affectUnwantedUploader" > </label>
+                <label class="input_label" title="The color to use for unwanted uploaders" >Unwated uploader highlight color<input type="color" id="UnwantedUserHighlightColor" > </label>
+                <label class="input_label" title="Hide these torrents instead of applying a highlight" >Hide instead of hightlight<input type="checkbox" id="hideUnwantedUploaderInsteadOfHighlight" > </label>
+                <label class="input_label" title="Comma seperated, case-sensitive, list of unwanted uploaders" >Unwanted uploaders<input type="text" id="UnwantedUploader" > </label>
+            </div>
+        <hr></hr>
+        <p>NON MOVIES</p>
+        <label class="input_label" title="Allows you to hide categories like porn, 3d etc. by default so you'll never see them no matter what you search for" >Hide unwanted categories<input type="checkbox" id="hideNonMovies" > </label>
+            <label class="input_label" title="Comma seperated, case-insensitive list of unwanted categories" >Unwanted categories<input type="text" id="nonMovies" > </label>
+        <hr></hr>
+        <p>POTENTIAL FAKE TORRENTS</p>
+        <label class="input_label" title="Affect torrents which could potentially be fake" >Affect potential fakes<input type="checkbox" id="affectPotentialFakes" > </label>
+        <label class="input_label" title="Only show torrents uploaded by trusted users, thus hiding all untrusted users and their torrents" >Show trusted only<input type="checkbox" id="trustedTorrentsOnly" > </label>
+        <label class="input_label" title="If the number of seeds on a torrent uploaded by a untrusted user exceeds this number it is marked as potentially fake" >Max seeds without trust<input type="number" min="0" id="maxSeedsWithoutTrust" > </label>
+        <label class="input_label" title="Don't hide potential fakes but just display a warning on them" >Don't hide potential fakes<input type="checkbox" id="dontHideJustHighlightPotentialFakes" > </label>
+        <label class="input_label" title="Include torrents uploaded by untrusted users and that have no comments on them, no matter what the amount of seeders is" >Affect untrusted torrents without comments<input type="checkbox" id="includeUntrustedTorrentsWithoutComments" > </label>
+        <hr></hr>
+		<p>MISCELLANEOUS</p>
+		<label class="input_label" title="Display an icon on torrents which are uploaded today or yesterday" >Mark new torrents<input type="checkbox" id="markNewTorrents" > </label>
+		<label class="input_label" title="Widens the part which lists the torrents to almost max of your screen width" >Increase width<input type="checkbox" id="stretchWidth" > </label>
+        <label class="input_label" title="Change the main text color so it doesn't clash with the color of highlights and becomes unreadable" >Text color<input type="color" id="detDescColor" > </label>
+		<hr class="faded_hr"></hr>
+		<label class="input_label" title="Display icons on every tv-show and movie torrent so that you can easily search for subtitles, youtube videos or its imdb page" >Display search icons<input type="checkbox" id="displaySearch" > </label>
+			<p id="hidden-settings3" style="display: none;" >ATTENTION: Icons will cause a little extra page load time, especially when browsing top 100s</p>
+		    <p id="hidden-settings4" style="display: block;" title="Check checkbox to show settings" >SETTINGS INACTIVE AND HIDDEN</p>        
+			<div id="hideOrNotToHide3" style="display: unset;">
+			    <label class="input_label" id="Subscene" >Subscene<input type="checkbox" id="showSubscene" > </label>   
+			    <label class="input_label" id="Youtube" >Youtube<input type="checkbox" id="showYoutube" > </label>			    
+			    <label class="input_label" id="IMDb" >IMDb<input type="checkbox" id="showIMDb" > </label>				
+			</div>
+		<hr></hr>
+    </form>
+    <button id="restore_default" >Restore defaults</button>
+
+  </body>
+
+</html>
