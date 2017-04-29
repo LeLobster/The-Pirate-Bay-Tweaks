@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "The Pirate Bay Tweaks",
-  "version": "1.0.4",
+  "version": "1.0.5",
   
   "short_name": "TPB Tweaks",
   "description": "Enhances The Pirate Bay with configurable tweaks.", 

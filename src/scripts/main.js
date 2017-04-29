@@ -18,6 +18,67 @@
         document.styleSheets[0].insertRule('#main-content { margin-right: 50px !important; }', 0);
     }
 
+    if (userPref['inlineView']) {
+
+        function buildA(elt) {
+            newA = document.createElement('a');
+            newA.className = 'toggleA';
+            newA.href = '#';
+            newA.innerText = '(+)';
+            newA.style.marginLeft = '5px';
+			newA.title = 'Click to display details';
+            elt.children[1].insertBefore(newA, elt.children[1].lastChild);
+			elt.children[1].lastElementChild.addEventListener('click', function(e) {
+				e.preventDefault();
+				setFrame(elt);
+			});
+        }
+		
+		// Doing this because when there's no <tr> after the last torrent
+		// either on top 100's or 1 page search results
+		// the setFrame function doesn't work without this... I'm not sure why.
+		// According to https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+		// If "elt.nextSibling" does not have a next sibling, it returns null, (<- is correct)
+		// and "insertThis" is inserted at the end of the child node list (<- doesn't happen)
+		newTr = document.createElement('tr');
+		lastTr = document.querySelector('tbody').lastElementChild;
+		document.querySelector('tbody').insertBefore(newTr, lastTr.nextSibling);
+		
+        function setFrame(elt) {
+            if (elt.nextElementSibling.className != 'frameDiv') {
+                elt.children[1].lastElementChild.innerText = '(-)';
+                elt.children[1].lastElementChild.title = 'Click to hide details';
+				
+                newDiv = document.createElement('div');
+                newDiv.className = 'frameDiv';
+                newDiv.style.cssText = 'display: block;width: 662%;height: 300px;padding-bottom: 7px';
+
+                newFrame = document.createElement('iframe');
+                newFrame.className = 'actualFrame';
+                torLink = elt.children[1].firstElementChild.firstElementChild.href;
+				newFrame.sandbox = '';
+                newFrame.src = torLink + ' #detailsouterframe';
+
+                if (elt.style.backgroundColor != "") {
+                    borderColor = elt.style.backgroundColor;
+                } else {
+                    borderColor = '#f3EEEC';
+                }
+
+                newFrame.style.cssText = 'height: 100%;width: 100%;border: 4px solid ' + borderColor;
+
+                tBody = elt.parentNode;
+                insertThis = newDiv.appendChild(newFrame);
+                tBody.insertBefore(insertThis.parentNode, elt.nextSibling);
+
+            } else {
+                elt.children[1].lastElementChild.innerText = '(+)';
+				elt.children[1].lastElementChild.title = 'Click to display details';
+                elt.nextElementSibling.remove(elt);
+            }
+        }
+    }
+
     if (userPref['displaySearch']) {
         dupeThis = document.getElementsByClassName('header');
         clone = dupeThis[0].lastElementChild.cloneNode();
@@ -63,16 +124,16 @@
                 titleFilter = ['[012678]{3,4}[p|i]{1}.*','bluray','[bdrdvh]{2,3}rip','dvd-rip','mp4','mkv','avi','aac','ac3',
                 'xvid','divx','(h\\.|h|x)26(4|5).*','hevc','web(rip|dl|-dl)','(hd|tv)\\S?(tv|rip).*','extras','5\\.1','4K.*',
                 '(the)?(\\s|\\.)*(un(cut|rated|censored)|restored|extended|widescreen|director\\S?s)(\\s|\\.)*(version|cut)?'];
-
+				
                 trimmedReleaseName = trimmedReleaseName.replace(new RegExp(titleFilter.join('|'),'ig'), ' ');
-			    trimmedReleaseName = trimmedReleaseName.replace(/(duology|trilogy)/i, ' ')
+                trimmedReleaseName = trimmedReleaseName.replace(/(duology|trilogy)/i, ' ')
                 trimmedReleaseName = trimmedReleaseName.replace(/\[[\D]+$/ig, '');
 
                 if (torrentCategory.search(/tv shows/i) != -1) {
 
                     tvFilter = ['(s\\d{1,2}e?\\d{1,2}','(complete)?.season.?\\d?.(complete)?',
-					'ep(isode)?.\\d+','(\\d{1,2}(x|.?of.?)\\d{1,2})','\\d{2,4}\\S\\d{2,4}\\S\\d{2,4})(.*)'];
-					
+                    'ep(isode)?.\\d+','(\\d{1,2}(x|.?of.?)\\d{1,2})','\\d{2,4}\\S\\d{2,4}\\S\\d{2,4})(.*)'];
+
                     trimmedTitle = trimmedReleaseName.replace(new RegExp(tvFilter.join('|'), 'i'), '');
                     trimmedTitle = trimmedTitle.replace(/(\()(\D*)(\))|(\[)(\D*)(\])|(\{)(\D*)(\})/, '');
                     trimmedTitle = trimmedTitle.replace(/[\/\\#,+\[\]()$\-~%."*?<>{}!]/g, ' ').trim();
@@ -112,13 +173,13 @@
     }
 
     document.querySelectorAll('#searchResult tbody tr').forEach(function(elt) {
-        if (elt.childNodes.length != 1) {
+        if (elt.childNodes.length != 1 && elt.children[1] != undefined) {
 
-		    elt.className = 'tr';
-		
+            elt.className = 'tr';
+
             var torrentTitle = elt.children[1].firstElementChild.innerText;
             var userName = elt.children[1].lastElementChild.innerText;
-
+			
             if (userPref['markNewTorrents']) {
                 newImg = chrome.extension.getURL('src/new.png');
                 trimmedElt = elt.children[1].lastElementChild.innerText.replace(/^((?!day|min).)*$/g, '');
@@ -178,7 +239,7 @@
 							elt.style.backgroundColor = userPref['NonRetailColor'];
 						}
 					}
-				}
+                }
             }
 
             if (userPref['includeUnwanted']) {
@@ -254,6 +315,10 @@
                         }
                     }
                 }
+            }
+
+            if (userPref['inlineView']) {
+                buildA(elt);
             }
 
             if (userPref['displaySearch']) {

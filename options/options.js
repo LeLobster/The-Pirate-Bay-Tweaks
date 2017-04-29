@@ -36,6 +36,7 @@ var defaultSettings = {
     markNewTorrents: false,
     stretchWidth: true,
     detDescColor: "#1f2223",
+    inlineView: true,
     displaySearch: false,
     showSubscene: false,
     showYoutube: false,
@@ -109,6 +110,7 @@ function hideOrNotToHide1() {
         hiddenPelt.style = 'display: block;'
     }
 }
+
 function hideOrNotToHide2() {
     includeUnwantedCheck = document.getElementById('includeUnwanted');
     hiddenPelt2 = document.getElementById('hidden-settings2');
@@ -150,28 +152,28 @@ function checkChecked() {
     }
     if (totalChecked == 0) {
         document.getElementById('displaySearch').checked = false;
-		hideOrNotToHide3();		
+        hideOrNotToHide3();
     }
 }
 
 function setCheck() {
     searchCheck = document.getElementById('displaySearch');
-	checkBoxes = document.querySelectorAll('#hideOrNotToHide3 .input_label *'); 
-	
-	if (searchCheck.checked == true) {
-	    checkBoxes.forEach(function(check){
+    checkBoxes = document.querySelectorAll('#hideOrNotToHide3 .input_label *');
+
+    if (searchCheck.checked == true) {
+        checkBoxes.forEach(function(check){
             check.checked = true;
-        });	
-	} else {
-		checkBoxes.forEach(function(check){
+        });
+    } else {
+        checkBoxes.forEach(function(check){
             check.checked = false;
-        });	
-	}
+        });
+    }
 }
 
 checkBoxes = document.querySelectorAll('#hideOrNotToHide3 .input_label');
 for (i = 0; i < checkBoxes.length; i++) {
-	checkBoxes[i].addEventListener('change', checkChecked)
+    checkBoxes[i].addEventListener('change', checkChecked)
 }
 document.addEventListener('DOMContentLoaded', getOptions);
 
@@ -187,5 +189,4 @@ document.querySelector('#restore_default').addEventListener('click', restoreDefa
 document.querySelector('#restore_default').addEventListener('click', checkChecked);
 document.querySelector('#restore_default').addEventListener('click', hideOrNotToHide1);
 document.querySelector('#restore_default').addEventListener('click', hideOrNotToHide2);
-// document.querySelector('#restore_default').addEventListener('click', hideOrNotToHide3);
 document.querySelector('#restore_default').addEventListener('click', saveOptions);
