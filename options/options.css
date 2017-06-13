@@ -35,7 +35,7 @@ p {
     font-family: helvetica;}
 .faded_hr {
     opacity: .15;}
-#Subscene, #Youtube, #IMDb {    
+#Subscene, #Youtube, #IMDb, #Letterboxd {    
     background-repeat: no-repeat;
     background-position: 0px center;
     padding-left: 24px;}
@@ -45,5 +45,7 @@ p {
     background-image: url('../src/youtube.png');}
 #IMDb {
     background-image: url('../src/imdb.png');}
+#Letterboxd {
+	background-image: url('../src/letterboxd.png');}
 #restore_default {
     float: right;}

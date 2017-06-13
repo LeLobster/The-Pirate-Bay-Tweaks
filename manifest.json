@@ -23,7 +23,8 @@
 	  "src/new.png",
 	  "src/subscene.png",
 	  "src/youtube.png",
-	  "src/imdb.png"
+	  "src/imdb.png",
+	  "src/letterboxd.png"
   ],
 
   "content_scripts": [

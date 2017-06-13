@@ -40,7 +40,8 @@ var defaultSettings = {
     displaySearch: false,
     showSubscene: false,
     showYoutube: false,
-    showIMDb: false
+    showIMDb: false,
+	showLetterboxd: false
 }
 
 function saveOptions(e) {
@@ -128,17 +129,14 @@ function hideOrNotToHide2() {
 function hideOrNotToHide3() {
     displaySearchCheck = document.getElementById('displaySearch');
     hiddenPelt3 = document.getElementById('hidden-settings3');
-    hiddenPelt4 = document.getElementById('hidden-settings4');
     hideThis3 = document.querySelector('#hideOrNotToHide3');
 
     if (displaySearchCheck.checked == true) {
         hideThis3.style = 'display: unset;'
-        hiddenPelt3.style = 'display: block;'
-        hiddenPelt4.style = 'display: none;'
+        hiddenPelt3.style = 'display: none;'
     } else {
         hideThis3.style = 'display: none;'
-        hiddenPelt3.style = 'display: none;'
-        hiddenPelt4.style = 'display: block;'
+        hiddenPelt3.style = 'display: block;'
     }
 }
 

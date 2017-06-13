@@ -12,7 +12,7 @@
     document.styleSheets[0].insertRule('#searchResult tr:hover { filter: brightness(105%); }', 0);
     document.styleSheets[0].insertRule('#searchResult tr:nth-child(even) { filter: invert(2.5%); }', 0);
     document.styleSheets[0].insertRule('table#searchResult td.vertTh { width: 15% !important; }', 0);
-	
+    
     if (userPref['stretchWidth']) {
         document.styleSheets[0].insertRule('#main-content { margin-left: 50px !important; }', 0);
         document.styleSheets[0].insertRule('#main-content { margin-right: 50px !important; }', 0);
@@ -26,29 +26,29 @@
             newA.href = '#';
             newA.innerText = '(+)';
             newA.style.marginLeft = '5px';
-			newA.title = 'Click to display details';
+            newA.title = 'Click to display details';
             elt.children[1].insertBefore(newA, elt.children[1].lastChild);
-			elt.children[1].lastElementChild.addEventListener('click', function(e) {
-				e.preventDefault();
-				setFrame(elt);
-			});
+            elt.children[1].lastElementChild.addEventListener('click', function(e) {
+                e.preventDefault();
+                setFrame(elt);
+            });
         }
-		
-		// Doing this because when there's no <tr> after the last torrent
-		// either on top 100's or 1 page search results
-		// the setFrame function doesn't work without this... I'm not sure why.
-		// According to https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
-		// If "elt.nextSibling" does not have a next sibling, it returns null, (<- is correct)
-		// and "insertThis" is inserted at the end of the child node list (<- doesn't happen)
-		newTr = document.createElement('tr');
-		lastTr = document.querySelector('tbody').lastElementChild;
-		document.querySelector('tbody').insertBefore(newTr, lastTr.nextSibling);
-		
+        
+        // Doing this because when there's no <tr> after the last torrent
+        // either on top 100's or 1 page search results
+        // the setFrame function doesn't work without this... I'm not sure why.
+        // According to https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+        // If "elt.nextSibling" does not have a next sibling, it returns null, (<- is correct)
+        // and "insertThis" is inserted at the end of the child node list (<- doesn't happen)
+        newTr = document.createElement('tr');
+        lastTr = document.querySelector('tbody').lastElementChild;
+        document.querySelector('tbody').insertBefore(newTr, lastTr.nextSibling);
+        
         function setFrame(elt) {
             if (elt.nextElementSibling.className != 'frameDiv') {
                 elt.children[1].lastElementChild.innerText = '(-)';
                 elt.children[1].lastElementChild.title = 'Click to hide details';
-				
+                
                 newDiv = document.createElement('div');
                 newDiv.className = 'frameDiv';
                 newDiv.style.cssText = 'display: block;width: 662%;height: 300px;padding-bottom: 7px';
@@ -56,7 +56,7 @@
                 newFrame = document.createElement('iframe');
                 newFrame.className = 'actualFrame';
                 torLink = elt.children[1].firstElementChild.firstElementChild.href;
-				newFrame.sandbox = '';
+                newFrame.sandbox = '';
                 newFrame.src = torLink + ' #detailsouterframe';
 
                 if (elt.style.backgroundColor != "") {
@@ -73,7 +73,7 @@
 
             } else {
                 elt.children[1].lastElementChild.innerText = '(+)';
-				elt.children[1].lastElementChild.title = 'Click to display details';
+                elt.children[1].lastElementChild.title = 'Click to display details';
                 elt.nextElementSibling.remove(elt);
             }
         }
@@ -85,11 +85,23 @@
         dupeThis[0].append(clone);
         dupeThis[0].lastElementChild.innerText = 'Search';
         dupeThis[0].lastElementChild.title = 'Search on other websites';
-        if (userPref['showSubscene'] && userPref['showYoutube'] && userPref['showIMDb']) {
+		
+		iconsActive = [userPref['showSubscene'], userPref['showYoutube'], userPref['showIMDb'], userPref['showLetterboxd']];
+		iconCount = 0
+		iconsActive.forEach( function(i) {
+			if (i == true) {
+				iconCount++
+			}
+		});
+		
+        if (iconCount == 3) {
             dupeThis[0].lastElementChild.style = 'width: 7%;';
-        } else {
+		} else if (iconCount > 3) {
+			dupeThis[0].lastElementChild.style = 'width: 8%;';
+		} else {
             dupeThis[0].lastElementChild.style = 'width: 5%;';
         }
+		
         document.styleSheets[0].insertRule('#searchIconsTd { display: table; }', 0);
         document.styleSheets[0].insertRule('#searchIconsTd { margin: 13px auto 0px; }', 0);
         document.styleSheets[0].insertRule('#searchIconsTd { padding: 0px !important; }', 0);
@@ -100,6 +112,7 @@
             a.href = href;
             a.title = title;
             a.setAttribute('target','_blank');
+			a.setAttribute('rel', 'noreferrer');
             a.style = 'font-size: 0px;';
 
             img = document.createElement('img');
@@ -124,7 +137,7 @@
                 titleFilter = ['[012678]{3,4}[p|i]{1}.*','bluray','[bdrdvh]{2,3}rip','dvd-rip','mp4','mkv','avi','aac','ac3',
                 'xvid','divx','(h\\.|h|x)26(4|5).*','hevc','web(rip|dl|-dl)','(hd|tv)\\S?(tv|rip).*','extras','5\\.1','4K.*',
                 '(the)?(\\s|\\.)*(un(cut|rated|censored)|restored|extended|widescreen|director\\S?s)(\\s|\\.)*(version|cut)?'];
-				
+                
                 trimmedReleaseName = trimmedReleaseName.replace(new RegExp(titleFilter.join('|'),'ig'), ' ');
                 trimmedReleaseName = trimmedReleaseName.replace(/(duology|trilogy)/i, ' ')
                 trimmedReleaseName = trimmedReleaseName.replace(/\[[\D]+$/ig, '');
@@ -168,6 +181,12 @@
                         createIcon(td, 'IMDb', 'http://www.imdb.com/find?q=' + trimmedTitle + '&s=tt&ttype=ft', img);
                     }
                 }
+                if (userPref['showLetterboxd']) {
+                    img = chrome.extension.getURL('src/letterboxd.png');
+					if (torrentCategory.search(/tv shows/i) == -1) {
+						createIcon(td, 'Letterboxd', 'https://letterboxd.com/search/' + noYearTitle, img);
+					}
+                }
             }
         }
     }
@@ -179,7 +198,7 @@
 
             var torrentTitle = elt.children[1].firstElementChild.innerText;
             var userName = elt.children[1].lastElementChild.innerText;
-			
+            
             if (userPref['markNewTorrents']) {
                 newImg = chrome.extension.getURL('src/new.png');
                 trimmedElt = elt.children[1].lastElementChild.innerText.replace(/^((?!day|min).)*$/g, '');
@@ -207,38 +226,38 @@
             }
 
             if (userPref['includeOther']) {
-				if (userPref['affectOther']) {
-					if (userPref['OtherKeyword'].toString() != "" && torrentTitle.search(
-						new RegExp('\\b' + userPref['OtherKeyword'].join('\\b|\\b') + '\\b', 'i')) != -1) {
-						if (userPref['hideOtherInsteadOfHighlight']) {
-							elt.remove(elt);
-						} else {
-							elt.style.backgroundColor = userPref['otherColor'];
-						}
-					}
-				}
-				if (userPref['affectx256']) {
-					if (torrentTitle.search(
-						new RegExp(/\bx265\b|\bHEVC\b|\bH265\b|\bH.265\b/ig)) != -1) {
-						if (userPref['hidex265InsteadOfHighlight']) {
-							elt.remove(elt);
-						} else {
-							elt.style.backgroundColor = userPref['x256Color'];
-						}
-					}
-				}
-				if (userPref['affectNonRetail']) {
-					nonRetailTorrent = torrentTitle.search(
-						new RegExp('\\b' + userPref['NonRetailKeyword'].join('\\b|\\b') + '\\b', 'i'));
-					if (userPref['hideNonRetailInsteadOfHighlight']) {
-						if (userPref['NonRetailKeyword'].toString() != "" && nonRetailTorrent != -1) {
-							elt.remove(elt);
-						}
-					} else {
-						if (userPref['NonRetailKeyword'].toString() != "" && nonRetailTorrent != -1) {
-							elt.style.backgroundColor = userPref['NonRetailColor'];
-						}
-					}
+                if (userPref['affectOther']) {
+                    if (userPref['OtherKeyword'].toString() != "" && torrentTitle.search(
+                        new RegExp('\\b' + userPref['OtherKeyword'].join('\\b|\\b') + '\\b', 'i')) != -1) {
+                        if (userPref['hideOtherInsteadOfHighlight']) {
+                            elt.remove(elt);
+                        } else {
+                            elt.style.backgroundColor = userPref['otherColor'];
+                        }
+                    }
+                }
+                if (userPref['affectx256']) {
+                    if (torrentTitle.search(
+                        new RegExp(/\bx265\b|\bHEVC\b|\bH265\b|\bH.265\b/ig)) != -1) {
+                        if (userPref['hidex265InsteadOfHighlight']) {
+                            elt.remove(elt);
+                        } else {
+                            elt.style.backgroundColor = userPref['x256Color'];
+                        }
+                    }
+                }
+                if (userPref['affectNonRetail']) {
+                    nonRetailTorrent = torrentTitle.search(
+                        new RegExp('\\b' + userPref['NonRetailKeyword'].join('\\b|\\b') + '\\b', 'i'));
+                    if (userPref['hideNonRetailInsteadOfHighlight']) {
+                        if (userPref['NonRetailKeyword'].toString() != "" && nonRetailTorrent != -1) {
+                            elt.remove(elt);
+                        }
+                    } else {
+                        if (userPref['NonRetailKeyword'].toString() != "" && nonRetailTorrent != -1) {
+                            elt.style.backgroundColor = userPref['NonRetailColor'];
+                        }
+                    }
                 }
             }
 
